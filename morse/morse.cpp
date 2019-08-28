@@ -56,10 +56,14 @@ std::string morse::decode(const std::string &code) {
     if (character != 0x0) {
       literal.push_back(character);
     }
-    if (code.at(curr + 1) == ' ') {
-      literal.append(" ");
-      prev = curr + 2;
-    } else {
+    try {
+      if (code.at(curr + 1) == ' ') {
+        literal.append(" ");
+        prev = curr + 2;
+      } else {
+        prev = curr + 1;
+      }
+    } catch (...) {
       prev = curr + 1;
     }
   }
