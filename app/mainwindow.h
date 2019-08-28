@@ -20,6 +20,8 @@ private:
 private slots:
   void onTextChanged();
   void onMorseChanged();
+  void onLoadTextFile();
+  void onLoadMorseFile();
 };
 
 #endif // MAINWINDOW_H
