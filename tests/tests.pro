@@ -11,3 +11,5 @@ HEADERS += \
 
 SOURCES += \
         main.cpp
+
+LIBS += -L$$OUT_PWD/../morse/ -lmorse

@@ -1,12 +1,9 @@
-#ifndef MORSE_H
-#define MORSE_H
-
+#pragma once
 #include "morse_global.h"
-class MORSESHARED_EXPORT Morse
-{
+#include <string>
 
-public:
-  Morse();
-};
+namespace morse {
+std::string encode(const std::string &literal);
+std::string decode(const std::string &code);
 
-#endif // MORSE_H
+}; // namespace morse
