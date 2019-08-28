@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        morseadapter.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        morseadapter.h
 
 FORMS += \
         mainwindow.ui

@@ -1,10 +1,12 @@
 #include "mainwindow.h"
-#include "../morse/morse.h"
+#include "morseadapter.h"
 #include "ui_mainwindow.h"
 #include <QFile>
 #include <QFileDialog>
 #include <QPlainTextEdit>
 #include <QTextStream>
+
+namespace ma = morse_adapter;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -25,15 +27,13 @@ MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::onTextChanged() {
   auto oldState = ui->morseEdit->blockSignals(true);
-  ui->morseEdit->setPlainText(QString::fromStdString(
-      morse::encode(ui->textEdit->toPlainText().toStdString())));
+  ui->morseEdit->setPlainText(ma::encode(ui->textEdit->toPlainText()));
   ui->morseEdit->blockSignals(oldState);
 }
 
 void MainWindow::onMorseChanged() {
   auto oldState = ui->textEdit->blockSignals(true);
-  ui->textEdit->setPlainText(QString::fromStdString(
-      morse::decode(ui->morseEdit->toPlainText().toStdString())));
+  ui->textEdit->setPlainText(ma::decode(ui->morseEdit->toPlainText()));
   ui->textEdit->blockSignals(oldState);
 }
 
