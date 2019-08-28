@@ -11,6 +11,7 @@ namespace ma = morse_adapter;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
+  this->setWindowTitle("Morse");
 
   connect(ui->textEdit, SIGNAL(textChanged()), this, SLOT(onTextChanged()),
           Qt::DirectConnection);

@@ -26,8 +26,7 @@ SOURCES += \
         morse.cpp
 
 HEADERS += \
-        morse.h \
-        morse_global.h 
+        morse.h
 
 unix {
     target.path = /usr/lib
