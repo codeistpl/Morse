@@ -22,6 +22,8 @@ private slots:
   void onMorseChanged();
   void onLoadTextFile();
   void onLoadMorseFile();
+  void onSaveText();
+  void onSaveMorse();
 };
 
 #endif // MAINWINDOW_H

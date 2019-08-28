@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
           SLOT(onLoadTextFile()));
   connect(ui->actionLoad_Morse, SIGNAL(triggered()), this,
           SLOT(onLoadMorseFile()));
+  connect(ui->actionSave_Text, SIGNAL(triggered()), this, SLOT(onSaveText()));
+  connect(ui->actionSave_Morse, SIGNAL(triggered()), this, SLOT(onSaveMorse()));
 }
 MainWindow::~MainWindow() { delete ui; }
 
@@ -50,6 +52,7 @@ void MainWindow::onLoadTextFile() {
     text.append(in.readLine());
   }
   ui->textEdit->setPlainText(text);
+  f.close();
 }
 
 void MainWindow::onLoadMorseFile() {
@@ -68,4 +71,33 @@ void MainWindow::onLoadMorseFile() {
     text.append(in.readLine());
   }
   ui->morseEdit->setPlainText(text);
+  f.close();
+}
+
+void MainWindow::onSaveText() {
+  auto path = QFileDialog::getSaveFileName(this, "Save Text As", "", "*.txt");
+  if (path.isEmpty())
+    return;
+
+  QFile f(path);
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
+    return;
+
+  QTextStream out(&f);
+  out << ui->textEdit->toPlainText();
+  f.close();
+}
+
+void MainWindow::onSaveMorse() {
+  auto path = QFileDialog::getSaveFileName(this, "Save Morse As", "", "*.txt");
+  if (path.isEmpty())
+    return;
+
+  QFile f(path);
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
+    return;
+
+  QTextStream out(&f);
+  out << ui->morseEdit->toPlainText();
+  f.close();
 }
